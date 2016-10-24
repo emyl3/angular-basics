@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Angular Basics</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+    <script src="client.js"></script>
+  </head>
+  <body>
+    <!--2 steps to defining angular-->
+    <!--ng-app is an angular directive that allows us to bind functionality a certain part of DOM from js file to our html file-->
+    <!--needs to match the name we gave it in client.js-->
+    <main ng-app="basicApp">
+      <!--controllers take our data to the views and do a lot of the logic-->
+      <!--anything in this section will be in the control of our basic controller-->
+      <section ng-controller="BasicController as basic"> <!--means we will refer to it as basic and need to have this-->
+        <!--angular expression we want evaluated within the curly braces-->
+        <p>{{ basic.person.name }}</p>
+        <p>{{ basic.person.hairColor }}</p>
+
+        <form>
+          <label for="cohort">Cohort</label>
+          <!--ng-model is a directive that can be used to define things on the fly-->
+          <input type="text" id="cohort" ng-model="basic.cohort.name" />
+          <label for="room">Room Number</label>
+          <input type="number" id="room" ng-model="basic.cohort.room" />
+          <button type="submit" ng-click="basic.createCohort()">Submit</button>
+        </form>
+
+        <p>{{basic.cohort.name}}</p>
+        <p>{{basic.cohort.room}}</p> <!--called expressions-->
+        <p>Array{{basic.cohorts}}</p>
+
+        <!--for this particular array cohorts will be referenced as cohort-->
+
+        <ul>
+          <li ng-repeat="cohort in basic.cohorts">{{ cohort.name }}:  {{ cohort.room }}</li>
+        </ul>
+    </main>
+  </body>
+</html>
